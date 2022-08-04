@@ -1,0 +1,21 @@
+apiVersion: operator.external-secrets.io/v1alpha1
+kind: OperatorConfig
+metadata:
+  name: awssm-config
+  namespace: openshift-operators
+spec:
+  processClusterExternalSecret: true
+  processClusterStore: true
+  crds:
+    createClusterExternalSecret: true
+    createClusterSecretStore: true
+  createOperator: true
+  rbac:
+    create: true
+  replicaCount: 1
+  serviceAccount:
+    annotations: {}
+    create: true
+    name: 'awssm-sa'
+  concurrent: 1
+  controllerClass: 'awssm'

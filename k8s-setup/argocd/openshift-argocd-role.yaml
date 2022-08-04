@@ -1,0 +1,33 @@
+#https://access.redhat.com/solutions/6158462
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: argocd-role
+  namespace: argocd
+rules:
+- apiGroups:
+  - "*"
+  resources:
+  - "*"
+  verbs:
+  - Get
+  - List
+  - Watch
+  - Patch
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: argocd-rolebinding
+  namespace: argocd
+roleRef:
+  apiGroup: rbac.authorization.k8s.io  
+  kind: Role
+  name: argocd-role
+subjects:
+- kind: ServiceAccount
+  name: argocd-argocd-application-controller 
+  namespace: argocd
