@@ -18,8 +18,7 @@ https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones#
 Cluster Setup:
 Run the openshift installer
 ```
-openshift-install create install-config --dir=cluster-config
-# caution: create cluster command "consumes" the install-config.yaml stored in this repository
+# caution: create cluster command "consumes" the install-config.yaml stored in this ./cluster-config
 openshift-install create cluster --dir=cluster-config
 ```
 
