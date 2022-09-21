@@ -5,12 +5,12 @@ metadata:
   namespace: argocd
 spec:
   initialRepositories: |
-    - name: PDP GitOps
+    - name: SRF OKD GitOps
       sshPrivateKeySecret:
-        key: sshPrivateKey
-        name: repo-secret
+        key: srf-helm-chart-private.key
+        name: srf-helm-charts-secret
       type: git
-      url: git@github.com:SRGSSR/pdp-gitops.git
+      url: git@github.com:mmz-srf/helm-charts.git
 
   initialSSHKnownHosts:
     excludedefaulthosts: false

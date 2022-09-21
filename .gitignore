@@ -1,3 +1,4 @@
 .env.dev
 .env.int
 .env.prd
+srf-helm-chart-private.key
