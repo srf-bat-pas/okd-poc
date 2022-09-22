@@ -2,7 +2,7 @@
 
 
 ## Configuration
-PHASE='dev'
+PHASE='okd-poc'
 # sourcing the right env file
 . ".env.${PHASE}"
 
@@ -13,4 +13,4 @@ kubectl create secret generic srf-helm-charts-secret --from-file=./srf-helm-char
 
 ## Setup ArgoCD
 kubectl create namespace argocd
-kubectl apply -f ./k8s-setup/argocd/argocd-server.yaml
+envsubst < ./k8s-setup/argocd/argocd-server.yaml | kubectl apply -f -

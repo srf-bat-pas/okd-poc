@@ -58,6 +58,17 @@ spec:
     volumes:
     - name: custom-tools
       emptyDir: {}
+
+    env:
+      - name: AVP_TYPE
+        value: "$AVP_TYPE"
+      - name: AWS_REGION
+        value: "$AWS_REGION"
+      - name: AWS_ACCESS_KEY_ID
+        value: "$AWS_ACCESS_KEY_ID"
+      - name: AWS_SECRET_ACCESS_KEY
+        value: "$AWS_SECRET_ACCESS_KEY"
+
     initContainers:
     - name: download-tools
       image: alpine:3.8
@@ -70,6 +81,10 @@ spec:
       volumeMounts:
         - mountPath: /custom-tools
           name: custom-tools
+    volumeMounts:
+      - mountPath: /usr/local/bin/argocd-vault-plugin
+        name: custom-tools
+        subPath: argocd-vault-plugin
   server:
     resources:
       limits:
