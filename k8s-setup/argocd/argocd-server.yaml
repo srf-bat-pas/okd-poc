@@ -58,6 +58,21 @@ spec:
       requests:
         cpu: 250m
         memory: 256Mi
+    initContainers:
+    - name: download-tools
+      image: alpine:3.8
+      command: [sh, -c]
+      args:
+        - >-
+          wget -O /custom-tools/argocd-vault-plugin
+          https://github.com/mmz-srf/argocd-vault-plugin/releases/download/v1.2.2/argocd-vault-plugin_1.2.2_linux_amd64 &&
+          chmod +x /custom-tools/argocd-vault-plugin
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+      volumeMounts:
+        - mountPath: /custom-tools
+          name: custom-tools
   server:
     resources:
       limits:
