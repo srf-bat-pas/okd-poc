@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd-apps
+  name: apps
   # You'll usually want to add your resources to the argocd namespace.
   namespace: argocd
   # Add a this finalizer ONLY if you want these to cascade delete.
@@ -13,9 +13,12 @@ spec:
 
   # Source of the application manifests
   source:
-    repoURL: git@github.com:SRGSSR/pdp-gitops.git
-    targetRevision: noref-okd
-    path: okd/argocd-apps
+    helm:
+      valueFiles:
+      - values-okd-poc.yaml
+    repoURL: git@github.com:mmz-srf/helm-charts.git
+    targetRevision: PLATFORM-2491-okd-poc-charts
+    path: apps
 
   # Destination cluster and namespace to deploy the application
   destination:
