@@ -26,3 +26,9 @@ Create an AWS programatic IAM User with access to read from secretsmanager and s
 
 Start Setup Custom Compontents
 ```./setup-components.sh```
+
+
+# STXT - SRF POC Issues
+- allowed uid range starts from 1000710000, we are using almost always 1000 which is forbidden on okd
+- build-robot should be implemented, not quite sure if it can be done as in cargo
+- Global registry credentials, ideally password less access to registry.swisstxt.ch as in the other cargos
