@@ -8,7 +8,7 @@ spec:
     - name: argocd-vault-plugin-helm
       generate:
         command: ["sh", "-c"]
-        args: ["helm template ${ARGOCD_APP_NAME} . --kube-version ${KUBE_VERSION} $(echo ${KUBE_API_VERSIONS} | tr \",\" \"\n\" | awk '{print \"--api-versions \"$1 \" \"}') --namespace ${ARGOCD_APP_NAMESPACE} ${helm_args} > all.yaml && argocd-vault-plugin generate all.yaml"]
+        args: ['helm template ${ARGOCD_APP_NAME} . --kube-version ${KUBE_VERSION} $(echo ${KUBE_API_VERSIONS} | tr "," "\n" | awk \'{print "--api-versions "$1 " "}\') --namespace ${ARGOCD_APP_NAMESPACE} ${ARGOCD_ENV_helm_args} > all.yaml && argocd-vault-plugin generate all.yaml']
 
   initialRepositories: |
     - name: SRF OKD GitOps
@@ -99,6 +99,7 @@ spec:
         name: custom-tools
         subPath: argocd-vault-plugin
   server:
+    insecure: true
     resources:
       limits:
         cpu: 500m

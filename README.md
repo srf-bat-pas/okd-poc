@@ -28,12 +28,17 @@ Start Setup Custom Compontents
 ```./setup-components.sh```
 
 
-# STXT - SRF POC Issues
-- allowed uid range starts from 1000710000, we are using almost always 1000 which is forbidden on okd
-- build-robot should be implemented, not quite sure if it can be done as in cargo
+# Swisstxt TODO
 - Global registry credentials, ideally password less access to registry.swisstxt.ch as in the other cargos
-- Argocd User-Login for deployments in Github Action
-- Cert-Manager installation from swisstxt
-- cert-manager and probably some other operators need an approval. Check how to do by kubectl
-- cert-manager default issuer setting not found
+- build-robot should be implemented, not quite sure if it can be done as in cargo
+- cert-manager default issuer setting not found - Joschi probably knows this
+- uid range Cluster-wide configuration
+
+# SRF TODO
 - Route vs Ingress Kind
+- Argocd User-Login for deployments in Github Action
+
+# TODO Done and outputs
+- allowed uid range starts from 1000710000, we are using almost always 1000 which is forbidden on okd
+  - solved with annotations at namespace level
+- configManagementPlugins command needs to be singlequoted, otherwise the variable substitution happens to early with empty strings
