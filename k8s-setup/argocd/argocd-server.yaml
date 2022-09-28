@@ -35,43 +35,10 @@ spec:
       p, role:org-admin, repositories, delete, *, allow
       g, system:authenticated:oauth, role:admin
     scopes: '[groups]'
-  controller:
-    resources:
-      limits:
-        cpu: "2"
-        memory: 2Gi
-      requests:
-        cpu: 250m
-        memory: 1Gi
-  dex:
-    openShiftOAuth: true
-    resources:
-      limits:
-        cpu: 500m
-        memory: 256Mi
-      requests:
-        cpu: 250m
-        memory: 128Mi
-  redis:
-    resources:
-      limits:
-        cpu: 500m
-        memory: 256Mi
-      requests:
-        cpu: 250m
-        memory: 128Mi
   repo:
-    resources:
-      limits:
-        cpu: "1"
-        memory: 512Mi
-      requests:
-        cpu: 250m
-        memory: 256Mi
     volumes:
     - name: custom-tools
       emptyDir: {}
-
     env:
       - name: AVP_TYPE
         value: "$AVP_TYPE"
@@ -81,7 +48,6 @@ spec:
         value: "$AWS_ACCESS_KEY_ID"
       - name: AWS_SECRET_ACCESS_KEY
         value: "$AWS_SECRET_ACCESS_KEY"
-
     initContainers:
     - name: download-tools
       image: alpine:3.8
@@ -98,6 +64,22 @@ spec:
       - mountPath: /usr/local/bin/argocd-vault-plugin
         name: custom-tools
         subPath: argocd-vault-plugin
+    resources:
+      limits:
+        cpu: "1"
+        memory: 512Mi
+      requests:
+        cpu: 250m
+        memory: 256Mi
+  dex:
+    openShiftOAuth: true
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 250m
+        memory: 128Mi
   server:
     insecure: true
     resources:
@@ -109,3 +91,19 @@ spec:
         memory: 128Mi
     route:
       enabled: true
+  controller:
+    resources:
+      limits:
+        cpu: "2"
+        memory: 2Gi
+      requests:
+        cpu: 250m
+        memory: 1Gi
+  redis:
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 250m
+        memory: 128Mi
