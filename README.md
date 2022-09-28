@@ -37,8 +37,10 @@ Start Setup Custom Compontents
 # SRF TODO
 - Route vs Ingress Kind
 - Argocd User-Login for deployments in Github Action
+- uid range default setup
+- Grafana fell out in 4.11 🙈
 
 # TODO Done and outputs
 - allowed uid range starts from 1000710000, we are using almost always 1000 which is forbidden on okd
   - solved with annotations at namespace level
-- configManagementPlugins command needs to be singlequoted, otherwise the variable substitution happens to early with empty strings
+- configManagementPlugins command needs to be singlequoted, otherwise the variable substitution happens by envsubst used in ./setup-components-stxt-poc.sh already
